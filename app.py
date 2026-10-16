@@ -25,11 +25,11 @@ PREMIOS = {
     "Caneta CENAP":           {"qtd": 100, "rotulo": "Caneta",         "icone": "🖊️", "cor": "#12305C", "texto": "#FFFFFF"},
     "Porta crachá (retrátil)": {"qtd": 200, "rotulo": "Porta crachá",  "icone": "🏷️", "cor": "#5B8CFF", "texto": "#FFFFFF"},
     "Bombom":                 {"qtd": 350, "rotulo": "Bombom",         "icone": "🍫", "cor": "#0E2A47", "texto": "#FFFFFF"},
-    "Prêmio surpresas":       {"qtd": 1,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33"},
+    "Prêmio surpresas":       {"qtd": 1,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33", "especial": True},
 }
 
 # Sorteio "de urna": a chance de cada prêmio é proporcional ao que resta dele.
-# Com 600 brindes comuns e 1 surpresa, a surpresa sai em ~1 a cada 600 giros,
+# Com 850 brindes comuns e 1 surpresa, a surpresa sai em ~1 a cada 850 giros,
 # num momento aleatório ao longo do evento.
 SORTEIO_PROPORCIONAL = True
 
@@ -541,7 +541,7 @@ def segmento(nome):
         "icone": p["icone"],
         "cor": p["cor"],
         "texto": p["texto"],
-        "especial": p["qtd"] == 1,
+        "especial": p.get("especial", False),
     }
 
 
@@ -595,7 +595,7 @@ if st.session_state.aviso:
 chips = []
 for nome in disponiveis():
     p = PREMIOS[nome]
-    classes = "chip especial" if p["qtd"] == 1 else "chip"
+    classes = "chip especial" if p.get("especial") else "chip"
     chips.append(
         f'<div class="{classes}"><span class="ci">{p["icone"]}</span>'
         f'<span class="cn">{nome}</span></div>'
