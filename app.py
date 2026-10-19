@@ -151,10 +151,21 @@ def _salvar(a):
         pass
     if USA_GIST:
         def enviar():
-            # envia em segundo plano para a roleta não travar; em fila, na ordem
+            # Envia em segundo plano para a roleta não travar. Com vários
+            # aparelhos girando ao mesmo tempo, cada envio pega o estoque MAIS
+            # RECENTE na hora de enviar, então o Gist nunca fica com número velho.
             with a["fila_gist"]:
+                with a["lock"]:
+                    atual = json.dumps(
+                        {"quantidades": a["qtds"], "atualizado": a["atualizado"]},
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                if atual == a.get("ultimo_gist"):
+                    return  # já está salvo
                 try:
-                    _gravar_gist(conteudo)
+                    _gravar_gist(atual)
+                    a["ultimo_gist"] = atual
                     a["erro"] = None
                 except Exception as e:
                     a["erro"] = f"Falha ao salvar no Gist ({e}). A cópia local foi salva."
