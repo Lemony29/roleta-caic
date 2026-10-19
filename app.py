@@ -21,19 +21,19 @@ st.set_page_config(
 # Prêmios: quantidade inicial + como aparecem na roleta
 # ---------------------------------------------------------------------------
 PREMIOS = {
-    "Bloco de notas - CENAP": {"qtd": 200, "rotulo": "Bloco de notas", "icone": "📒", "cor": "#2F6BFF", "texto": "#FFFFFF"},
-    "Caneta CENAP":           {"qtd": 100, "rotulo": "Caneta",         "icone": "🖊️", "cor": "#12305C", "texto": "#FFFFFF"},
-    "Porta crachá (retrátil)": {"qtd": 200, "rotulo": "Porta crachá",  "icone": "🏷️", "cor": "#5B8CFF", "texto": "#FFFFFF"},
-    "Bombom":                 {"qtd": 350, "rotulo": "Bombom",         "icone": "🍫", "cor": "#0E2A47", "texto": "#FFFFFF"},
-    "Prêmio surpresas":       {"qtd": 1,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33", "especial": True},
+    "Bloco de notas - CENAP": {"qtd": 170, "rotulo": "Bloco de notas", "icone": "📒", "cor": "#2F6BFF", "texto": "#FFFFFF"},
+    "Caneta CENAP":           {"qtd": 70, "rotulo": "Caneta",         "icone": "🖊️", "cor": "#12305C", "texto": "#FFFFFF"},
+    "Porta crachá (retrátil)": {"qtd": 70, "rotulo": "Porta crachá",  "icone": "🏷️", "cor": "#5B8CFF", "texto": "#FFFFFF"},
+    "Bombom":                 {"qtd": 170, "rotulo": "Bombom",         "icone": "🍫", "cor": "#0E2A47", "texto": "#FFFFFF"},
+    "Prêmio surpresas":       {"qtd": 20,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33", "especial": True},
 }
 
 # Sorteio "de urna": a chance de cada prêmio é proporcional ao que resta dele.
-# Com 850 brindes comuns e 1 surpresa, a surpresa sai em ~1 a cada 850 giros,
+# Com 480 brindes comuns e 20 surpresas, a surpresa sai em ~1 a cada 25 giros,
 # num momento aleatório ao longo do evento.
 SORTEIO_PROPORCIONAL = True
 
-VOLTAS = 6  # voltas completas antes de parar
+VOLTAS = 4  # voltas completas antes de parar
 
 # ---------------------------------------------------------------------------
 # Armazenamento do estoque (sobrevive a recarregar a página e à virada do dia)
@@ -514,7 +514,7 @@ function mostrarResultado(){
 setRot(D.inicio);
 if (D.animar && n > 0){
   document.body.classList.add("spinning");
-  const dur = 6500, t0 = performance.now(), fatia = 360 / n;
+  const dur = 3500, t0 = performance.now(), fatia = 360 / n;
   const ease = t => 1 - Math.pow(1 - t, 4);
   let ultimo = Math.floor(D.inicio / fatia);
   function frame(now){
@@ -524,7 +524,7 @@ if (D.animar && n > 0){
     const k = Math.floor(a / fatia);
     if (k !== ultimo){ ultimo = k; flick(); }
     if (t < 1) requestAnimationFrame(frame);
-    else { document.body.classList.remove("spinning"); setTimeout(mostrarResultado, 250); }
+    else { document.body.classList.remove("spinning"); setTimeout(mostrarResultado, 120); }
   }
   requestAnimationFrame(frame);
 }
