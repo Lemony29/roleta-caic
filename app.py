@@ -23,9 +23,9 @@ st.set_page_config(
 PREMIOS = {
     "Bloco de notas - CENAP": {"qtd": 170, "rotulo": "Bloco de notas", "icone": "📒", "cor": "#2F6BFF", "texto": "#FFFFFF"},
     "Caneta CENAP":           {"qtd": 70, "rotulo": "Caneta",         "icone": "🖊️", "cor": "#12305C", "texto": "#FFFFFF"},
-    "Porta crachá (retrátil)": {"qtd": 70, "rotulo": "Porta crachá",  "icone": "🏷️", "cor": "#5B8CFF", "texto": "#FFFFFF"},
-    "Bombom":                 {"qtd": 170, "rotulo": "Bombom",         "icone": "🍫", "cor": "#0E2A47", "texto": "#FFFFFF"},
-    "Prêmio surpresas":       {"qtd": 20,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33", "especial": True},
+    "Porta crachá (retrátil)": {"qtd": 170, "rotulo": "Porta crachá",  "icone": "🏷️", "cor": "#5B8CFF", "texto": "#FFFFFF"},
+    "Bombom":                 {"qtd": 250, "rotulo": "Bombom",         "icone": "🍫", "cor": "#0E2A47", "texto": "#FFFFFF"},
+    "Prêmio surpresas":       {"qtd": 30,   "rotulo": "Surpresa!",      "icone": "⭐", "cor": "#C8F031", "texto": "#0A1A33", "especial": True},
 }
 
 # Sorteio "de urna": a chance de cada prêmio é proporcional ao que resta dele.
